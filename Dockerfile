@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Julian Haupt <julian.haupt@hauptmedia.de>
+MAINTAINER berckk@gmail.com
 
 ENV	DEBIAN_FRONTEND noninteractive
 
@@ -11,7 +11,7 @@ RUN	apt-get update -qq && \
 	rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 # install mysqltuner
-RUN	curl -sL -o /usr/local/bin/mysqltuner http://mysqltuner.pl && \
+RUN	curl -sL -o /usr/local/bin/mysqltuner https://raw.githubusercontent.com/major/MySQLTuner-perl/master/mysqltuner.pl && \
 	chmod +x /usr/local/bin/mysqltuner
 
-CMD ["/usr/local/bin/mysqltuner"]
+ENTRYPOINT ["/usr/local/bin/mysqltuner","$host","$user","$pass"]
